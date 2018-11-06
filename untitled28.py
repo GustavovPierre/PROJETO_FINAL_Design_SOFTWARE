@@ -63,10 +63,6 @@ while rodando:
         aviao.rect.x = -95
 
     if aviao.rect.y < 0:
-        aviao.rect.y= 0
-    if aviao.rect.y > 490:
-        aviao.vx = 490
-        
         aviao.rect.y = 0
     if aviao.rect.y > 490:
         aviao.rect.y = 490
