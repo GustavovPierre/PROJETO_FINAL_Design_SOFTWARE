@@ -10,6 +10,8 @@ import pygame as pg
 import sys
 from pygame.locals import *
 from random import randrange
+import random
+import time
 
 class Aviao(pygame.sprite.Sprite):
   def __init__(self, arquivo_imagem, pos_x, pos_y, vel_x, vel_y):
@@ -33,7 +35,7 @@ tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Air Rescue')
 
 background = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
-
+pygame.display.set_caption('Crazy Pelican')
 # Cria bola e adiciona em um grupo de Sprites.
 aviao = Aviao("Webp.net-resizeimage.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
@@ -82,5 +84,13 @@ while rodando:
     tela.blit(background, (0, 0))
     aviao_group.draw(tela)
     pygame.display.update()
+    
+
+    
+    
+    
+    
+    
+    
 
 pygame.display.quit()
