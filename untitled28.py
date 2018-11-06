@@ -63,15 +63,13 @@ while rodando:
         aviao.rect.x = -95
 
     if aviao.rect.y < 0:
-<<<<<<< HEAD
         aviao.rect.y= 0
     if aviao.rect.y > 490:
         aviao.vx = 490
-=======
+        
         aviao.rect.y = 0
     if aviao.rect.y > 490:
         aviao.rect.y = 490
->>>>>>> c5468d7479eb6e83883013846b08f433787bf473
         
     keyinput = pg.key.get_pressed()
     
