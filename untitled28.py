@@ -35,7 +35,7 @@ pygame.display.set_caption('Air Rescue')
 background = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
 
 # Cria bola e adiciona em um grupo de Sprites.
-aviao = Aviao("pelican_PNG29.png", 250, 150, randrange(1), randrange(1))
+aviao = Aviao("Webp.net-resizeimage.png", 96, 110, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
 aviao_group.add(aviao)
 
@@ -57,13 +57,15 @@ while rodando:
 
     aviao.move()
 
-    if aviao.rect.x < -200:
-        aviao.rect.x = 750
-    if aviao.rect.x > 800:
-        aviao.vx = 750
+    if aviao.rect.x < -95:
+        aviao.rect.x = 805
+    if aviao.rect.x > 805:
+        aviao.vx = -95
 
-    if aviao.rect.y < 0 or aviao.rect.y > 600:
-        aviao.vy = 0
+    if aviao.rect.y < 0:
+        aviao.rect.y = 805
+    if aviao.rect.y > 805:
+        aviao.vy = -95
         
     keyinput = pg.key.get_pressed()
     
