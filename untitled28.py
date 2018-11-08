@@ -47,7 +47,6 @@ class Bebe(pygame.sprite.Sprite):
        if self.rect.y == 600:
            self.rect.y = 0
            self.rect.x = random.randint(0,800)
-           
        
     
 
@@ -91,10 +90,6 @@ while rodando:
             # Neste caso, marca o flag rodando como False, 
             # para sair do loop de jogo.
             rodando = False
-<<<<<<< HEAD
-    
-    
-=======
             
     screen.blit(plano_de_fundo, posicao_plano_de_fundo)
 
@@ -107,7 +102,7 @@ while rodando:
     if x1 < -800:
         x1 = a
 
->>>>>>> 653d18d913e5a61373e6601c5d7ab5f987bbd75a
+
     aviao.move()
 
     if aviao.rect.x < -95:
@@ -132,12 +127,14 @@ while rodando:
         aviao.rect.y += 10
 
     aviao_group.draw(tela)
-<<<<<<< HEAD
     bebe_group.draw(tela)
     bebe_group.update()
-=======
     pygame.display.flip()
->>>>>>> 653d18d913e5a61373e6601c5d7ab5f987bbd75a
+    aviao.rect.y += 1
+
+    aviao_group.draw(tela)
+    pygame.display.flip()
+
     pygame.display.update()
 
 pygame.display.quit()
