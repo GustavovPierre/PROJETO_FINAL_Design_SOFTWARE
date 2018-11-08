@@ -10,6 +10,8 @@ import pygame as pg
 import sys
 from pygame.locals import *
 from random import randrange
+import os
+import random
 
 
 
@@ -27,10 +29,37 @@ class Aviao(pygame.sprite.Sprite):
   def move(self):
     self.rect.x += self.vx
     self.rect.y += self.vy
+
+class Bebe(pygame.sprite.Sprite):
+
+    def __init__(self, imagem_bebe):
+        pygame.sprite.Sprite.__init__(self)
+        self.y = 0
+        self.x = random.randint(0,800)
+        
+        picture = pygame.transform.scale(pygame.image.load(imagem_bebe), (80, 60))
+        self.image = picture
+        self.rect = self.image.get_rect()
+    
+    '''def draw(self, screen):
+        pygame.draw.rect(screen, self.color, self.rect)'''
+   
+    def update(self):
+       self.rect.y += 8
+       if self.rect.y == 600:
+           self.rect.y = 0
+           self.rect.x = random.randint(0,800)
+       
     
 
+<<<<<<< HEAD
 pygame.init()
 placar = 40
+=======
+
+pygame.init()
+#block = Block()
+>>>>>>> 6087ae5f17bda997079b6050cd0386d9c5ac9f5e
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('p')
 
@@ -54,6 +83,9 @@ aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
 aviao_group.add(aviao)
 
+bebe = Bebe("meupirudebone.png")
+bebe_group = pygame.sprite.Group()
+bebe_group.add(bebe)
 
 # ===============   LOOPING PRINCIPAL   ===============
 rodando = True
@@ -79,6 +111,7 @@ while rodando:
     if x1 < -800:
         x1 = a
 
+
     aviao.move()
 
     if aviao.rect.x < -95:
@@ -94,19 +127,31 @@ while rodando:
     keyinput = pg.key.get_pressed()
     
     if keyinput[pg.K_LEFT]:
-        aviao.rect.x -= 1
+        aviao.rect.x -= 10
     elif keyinput[pg.K_RIGHT]:
-        aviao.rect.x += 1
+        aviao.rect.x += 10
     elif keyinput[pg.K_UP]:
-        aviao.rect.y -= 1
+        aviao.rect.y -= 10
     elif keyinput[pg.K_DOWN]:
+<<<<<<< HEAD
         aviao.rect.y += 1
         
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
     texto = font.render("Pontuação",branco,20,10,800-30)
     teça.blit(texto(150,150))
+=======
+        aviao.rect.y += 10
+
+>>>>>>> 6087ae5f17bda997079b6050cd0386d9c5ac9f5e
+    aviao_group.draw(tela)
+    bebe_group.draw(tela)
+    bebe_group.update()
+    pygame.display.flip()
+    aviao.rect.y += 1
+
     aviao_group.draw(tela)
     pygame.display.flip()
+
     pygame.display.update()
 
     
