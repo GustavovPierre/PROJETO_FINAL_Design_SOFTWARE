@@ -10,8 +10,6 @@ import pygame as pg
 import sys
 from pygame.locals import *
 from random import randrange
-import random
-import time
 
 class Aviao(pygame.sprite.Sprite):
   def __init__(self, arquivo_imagem, pos_x, pos_y, vel_x, vel_y):
@@ -34,10 +32,20 @@ pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Air Rescue')
 
-background = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
-pygame.display.set_caption('Crazy Pelican')
+plano_de_fundo = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
+
+tamanho_plano_de_fundo = plano_de_fundo.get_size()
+posicao_plano_de_fundo = plano_de_fundo.get_rect()
+screen = pygame.display.set_mode(tamanho_plano_de_fundo)
+a,b = tamanho_plano_de_fundo
+x = 0
+y = 0
+
+x1 = a
+y1 = 0
+
 # Cria bola e adiciona em um grupo de Sprites.
-aviao = Aviao("Webp.net-resizeimage.png", 250, 150, randrange(1), randrange(1))
+aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
 aviao_group.add(aviao)
 
@@ -55,14 +63,24 @@ while rodando:
             # Neste caso, marca o flag rodando como False, 
             # para sair do loop de jogo.
             rodando = False
+            
+    screen.blit(plano_de_fundo, posicao_plano_de_fundo)
 
+    x1 -= 0.1
+    x -= 0.1
+    screen.blit(plano_de_fundo,(x,y))
+    screen.blit(plano_de_fundo,(x1,y1))
+    if x < -800:
+        x = a
+    if x1 < -800:
+        x1 = a
 
     aviao.move()
 
     if aviao.rect.x < -95:
-        aviao.rect.x = 805
+        aviao.rect.x = 800
     if aviao.rect.x > 805:
-        aviao.rect.x = -95
+        aviao.rect.x = -90
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
@@ -80,128 +98,8 @@ while rodando:
     elif keyinput[pg.K_DOWN]:
         aviao.rect.y += 1
 
-
-    tela.blit(background, (0, 0))
     aviao_group.draw(tela)
+    pygame.display.flip()
     pygame.display.update()
- 
-    
-    
-#aviao = Aviao("Bomb-image.png", 250, 150, randrange(1), randrange(1))    
-#class Bomb(pygame.sprite.Sprite):
-#    
-#    def __init__(self, width, height):
-#        super().__init__()
-#        self.image = pygame.Surface([width, height])
-#        self.rect = self.image.get_rect()
-#        
-#    def reset_pos(self):
-#        
-#        self.rect.y = random.randrange(-300, -20)
-#        self.rect.x = random.randrange(0, 600)
-#        
-#    def update(self):
-#
-#        # Move block down one pixel
-#        self.rect.y += 1
-# 
-#        # If block is too far down, reset to top of screen.
-#        if self.rect.y > 410:
-#            self.reset_pos()
-# 
-#bomb_list = pygame.sprite.Group()
-#all_sprites_list = pygame.sprite.Group()    
-#
-#for i in range(50):
-#    # This represents a block
-#    bomb = Bomb(20, 15)
-# 
-#    # Set a random location for the block
-#    bomb.rect.x = random.randrange(600)
-#    bomb.rect.y = random.randrange(800)
-# 
-#    # Add the block to the list of objects
-#    bomb_list.add(bomb)
-#    all_sprites_list.add(bomb)
-# Define some colors
-BLACK = (0, 0, 0)
-class Block(pygame.sprite.Sprite):
-    
-    def __init__(self, color, width, height):
-        
-        # Call the parent class (Sprite) constructor
-        super().__init__()
- 
-        # Create an image of the block, and fill it with a color.
-        # This could also be an image loaded from the disk.
-        self.image = pygame.Surface([width, height])
-        self.image.fill(color)
- 
-        # Fetch the rectangle object that has the dimensions of the image
-        # image.
-        # Update the position of this object by setting the values
-        # of rect.x and rect.y
-        self.rect = self.image.get_rect()
- 
-    def reset_pos(self):
-        
-        self.rect.y = random.randrange(-500, -20)
-        self.rect.x = random.randrange(0, 600)
- 
-    def update(self):
-      
-        # Move block down one pixel
-        self.rect.y += 1
- 
-        # If block is too far down, reset to top of screen.
-        if self.rect.y > 410:
-            self.reset_pos()
-
-# This is a list of 'sprites.' Each block in the program is
-# added to this list. The list is managed by a class called 'Group.'
-block_list = pygame.sprite.Group()
- 
-# This is a list of every sprite. All blocks and the player block as well.
-all_sprites_list = pygame.sprite.Group()
- 
-for i in range(50):
-    # This represents a block
-    block = Block(BLACK, 20, 15)
- 
-    # Set a random location for the block
-    block.rect.x = random.randrange(600)
-    block.rect.y = random.randrange(800)
- 
-    # Add the block to the list of objects
-    block_list.add(block)
-    all_sprites_list.add(block)
- 
- 
-# Loop until the user clicks the close button.
-done = False
- 
-# Used to manage how fast the screen updates
-clock = pygame.time.Clock()
- 
-score = 0
-
-    # Calls update() method on every sprite in the list
-all_sprites_list.update()
- 
-        # Reset block to the top of the screen to fall again.
-block.reset_pos()
- 
-    # Draw all the spites
-all_sprites_list.draw(tela)
- 
-    # Limit to 20 frames per second
-clock.tick(20)
-
-    #
-pygame.display.flip()
- 
-
-    
-    
 
 pygame.display.quit()
