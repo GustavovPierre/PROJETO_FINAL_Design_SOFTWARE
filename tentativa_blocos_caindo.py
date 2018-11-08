@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov  6 10:44:00 2018
@@ -204,4 +205,5 @@ pygame.display.flip()
     
     
 
-pygame.display.quit()
+
+# -*- coding: utf-8 -*-
