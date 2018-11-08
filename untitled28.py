@@ -57,10 +57,20 @@ pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Air Rescue')
 
-background = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
+plano_de_fundo = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
+
+tamanho_plano_de_fundo = plano_de_fundo.get_size()
+posicao_plano_de_fundo = plano_de_fundo.get_rect()
+screen = pygame.display.set_mode(tamanho_plano_de_fundo)
+a,b = tamanho_plano_de_fundo
+x = 0
+y = 0
+
+x1 = a
+y1 = 0
 
 # Cria bola e adiciona em um grupo de Sprites.
-aviao = Aviao("Webp.net-resizeimage.png", 250, 150, randrange(1), randrange(1))
+aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
 aviao_group.add(aviao)
 
@@ -81,14 +91,29 @@ while rodando:
             # Neste caso, marca o flag rodando como False, 
             # para sair do loop de jogo.
             rodando = False
+<<<<<<< HEAD
     
     
+=======
+            
+    screen.blit(plano_de_fundo, posicao_plano_de_fundo)
+
+    x1 -= 0.1
+    x -= 0.1
+    screen.blit(plano_de_fundo,(x,y))
+    screen.blit(plano_de_fundo,(x1,y1))
+    if x < -800:
+        x = a
+    if x1 < -800:
+        x1 = a
+
+>>>>>>> 653d18d913e5a61373e6601c5d7ab5f987bbd75a
     aviao.move()
 
     if aviao.rect.x < -95:
-        aviao.rect.x = 805
+        aviao.rect.x = 800
     if aviao.rect.x > 805:
-        aviao.rect.x = -95
+        aviao.rect.x = -90
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
@@ -106,11 +131,13 @@ while rodando:
     elif keyinput[pg.K_DOWN]:
         aviao.rect.y += 10
 
-
-    tela.blit(background, (0, 0))
     aviao_group.draw(tela)
+<<<<<<< HEAD
     bebe_group.draw(tela)
     bebe_group.update()
+=======
+    pygame.display.flip()
+>>>>>>> 653d18d913e5a61373e6601c5d7ab5f987bbd75a
     pygame.display.update()
 
 pygame.display.quit()
