@@ -11,6 +11,8 @@ import sys
 from pygame.locals import *
 from random import randrange
 
+
+
 class Aviao(pygame.sprite.Sprite):
   def __init__(self, arquivo_imagem, pos_x, pos_y, vel_x, vel_y):
     pygame.sprite.Sprite.__init__(self)
@@ -28,12 +30,12 @@ class Aviao(pygame.sprite.Sprite):
     
 
 pygame.init()
-
+placar = 40
 tela = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption('Air Rescue')
+pygame.display.set_caption('p')
 
 plano_de_fundo = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
-
+fundo = pygame.display.set_mode((800,600))
 tamanho_plano_de_fundo = plano_de_fundo.get_size()
 posicao_plano_de_fundo = plano_de_fundo.get_rect()
 screen = pygame.display.set_mode(tamanho_plano_de_fundo)
@@ -43,7 +45,10 @@ y = 0
 
 x1 = a
 y1 = 0
-
+branco = (225,225,225)
+preto = (0,0,0)
+pygame.font.init()
+font = pygame.font.get_default_font()
 # Cria bola e adiciona em um grupo de Sprites.
 aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
@@ -54,8 +59,7 @@ aviao_group.add(aviao)
 rodando = True
 while rodando:
 
-    # === PRIMEIRA PARTE: LIDAR COM EVENTOS ===
-
+    pontos = 0
     # Para cada evento não-processado na lista de eventos:
     for event in pygame.event.get():
         # Verifica se o evento atual é QUIT (janela fechou).
@@ -84,8 +88,8 @@ while rodando:
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
-    if aviao.rect.y > 490:
-        aviao.rect.y = 490
+    if aviao.rect.y > 490 - placar:
+        aviao.rect.y = 490 - placar
         
     keyinput = pg.key.get_pressed()
     
@@ -97,9 +101,13 @@ while rodando:
         aviao.rect.y -= 1
     elif keyinput[pg.K_DOWN]:
         aviao.rect.y += 1
-
+        
+    pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
+    texto = font.render("Pontuação",branco,20,10,800-30)
+    teça.blit(texto(150,150))
     aviao_group.draw(tela)
     pygame.display.flip()
     pygame.display.update()
 
+    
 pygame.display.quit()
