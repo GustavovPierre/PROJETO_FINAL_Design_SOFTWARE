@@ -48,7 +48,7 @@ class Bebe(pygame.sprite.Sprite):
         pygame.draw.rect(screen, self.color, self.rect)'''
    
     def update(self):
-       self.rect.y += 8
+       self.rect.y += 3
        if self.rect.y == 600:
            self.rect.y = 0
            self.rect.x = random.randint(0,800)
@@ -58,10 +58,7 @@ class Bebe(pygame.sprite.Sprite):
 
 pygame.init()
 placar = 40
-
-
 #block = Block()
-
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('p')
 
@@ -129,11 +126,11 @@ while rodando:
     keyinput = pg.key.get_pressed()
     
     if keyinput[pg.K_LEFT]:
-        aviao.rect.x -= 10
+        aviao.rect.x -= 5
     elif keyinput[pg.K_RIGHT]:
-        aviao.rect.x += 10
+        aviao.rect.x += 5
     elif keyinput[pg.K_UP]:
-        aviao.rect.y -= 10
+        aviao.rect.y -= 5
     elif keyinput[pg.K_DOWN]:
 
         aviao.rect.y += 1
@@ -143,7 +140,7 @@ while rodando:
     
     
     
-    aviao.rect.y += 10
+    
 
 
     aviao_group.draw(tela)
