@@ -12,7 +12,7 @@ from pygame.locals import *
 from random import randrange
 import os
 import random
-
+import pygame.locals
 
 
 class Aviao(pygame.sprite.Sprite):
@@ -52,14 +52,13 @@ class Bebe(pygame.sprite.Sprite):
        
     
 
-<<<<<<< HEAD
+
 pygame.init()
 placar = 40
-=======
 
 pygame.init()
 #block = Block()
->>>>>>> 6087ae5f17bda997079b6050cd0386d9c5ac9f5e
+
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('p')
 
@@ -133,16 +132,17 @@ while rodando:
     elif keyinput[pg.K_UP]:
         aviao.rect.y -= 10
     elif keyinput[pg.K_DOWN]:
-<<<<<<< HEAD
+
         aviao.rect.y += 1
         
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
-    texto = font.render("Pontuação",branco,20,10,800-30)
-    teça.blit(texto(150,150))
-=======
-        aviao.rect.y += 10
+    #texto = font.render("Pontuação",branco,20,10,800-30)
+    
+    
+    
+    aviao.rect.y += 10
 
->>>>>>> 6087ae5f17bda997079b6050cd0386d9c5ac9f5e
+
     aviao_group.draw(tela)
     bebe_group.draw(tela)
     bebe_group.update()
