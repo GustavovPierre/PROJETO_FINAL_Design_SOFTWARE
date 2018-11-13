@@ -14,7 +14,10 @@ import os
 import random
 import pygame.locals
 
-
+def texto(msg,color,tam,x,y):
+    font = pygame.font.SysFont(None,15,tam)
+    texto1 = font.render(msg, True,color)
+    fundo.blit(texto1,[x,y])
 class Aviao(pygame.sprite.Sprite):
   def __init__(self, arquivo_imagem, pos_x, pos_y, vel_x, vel_y):
     pygame.sprite.Sprite.__init__(self)
@@ -56,7 +59,7 @@ class Bebe(pygame.sprite.Sprite):
 pygame.init()
 placar = 40
 
-pygame.init()
+
 #block = Block()
 
 tela = pygame.display.set_mode((800, 600), 0, 32)
@@ -136,7 +139,7 @@ while rodando:
         aviao.rect.y += 1
         
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
-    #texto = font.render("Pontuação",branco,20,10,800-30)
+    texto("Pontuação:",branco,40,50,600-placar)
     
     
     
