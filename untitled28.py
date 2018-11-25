@@ -10,14 +10,8 @@ import pygame as pg
 import sys
 from pygame.locals import *
 from random import randrange
-import os
 import random
-import pygame.locals
 
-def texto(msg,color,tam,x,y):
-    font = pygame.font.SysFont(None,15,tam)
-    texto1 = font.render(msg, True,color)
-    fundo.blit(texto1,[x,y])
 class Aviao(pygame.sprite.Sprite):
   def __init__(self, arquivo_imagem, pos_x, pos_y, vel_x, vel_y):
     pygame.sprite.Sprite.__init__(self)
@@ -32,7 +26,7 @@ class Aviao(pygame.sprite.Sprite):
   def move(self):
     self.rect.x += self.vx
     self.rect.y += self.vy
-
+    
 class Bebe(pygame.sprite.Sprite):
 
     def __init__(self, imagem_bebe):
@@ -49,23 +43,45 @@ class Bebe(pygame.sprite.Sprite):
         pygame.draw.rect(screen, self.color, self.rect)'''
    
     def update(self):
-       self.rect.y += 3
+       self.rect.y += 1
        if self.rect.y == 600:
            self.rect.y = 0
            self.rect.x = random.randint(0,800)
-       
-    
+           
+          
+            
+class Missel(pygame.sprite.Sprite):
 
+    def __init__(self, imagem_missel):
+        pygame.sprite.Sprite.__init__(self)
+        self.y = 0
+        self.x = random.randint(0,800)
+        
+        picture2 = pygame.transform.scale(pygame.image.load(imagem_missel), (200, 150))
+        self.image = picture2
+        self.rect = self.image.get_rect()
+    
+   
+    def update(self):
+       self.rect.y += 2
+       if self.rect.y == 600:
+           self.rect.y = 0
+           self.rect.x = random.randint(0,800)
+           
 
 pygame.init()
+<<<<<<< HEAD
 placar = 40
 pontos = 0
 #block = Block()
-tela = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption('p')
+=======
 
-plano_de_fundo = pygame.image.load("cartoon_clouds-wallpaper-800x600.png").convert()
-fundo = pygame.display.set_mode((800,600))
+>>>>>>> f5d024c623f3e09cd71d9c6fdd6058d3a832346f
+tela = pygame.display.set_mode((800, 600), 0, 32)
+pygame.display.set_caption('Air Rescue')
+
+plano_de_fundo = pygame.image.load("Photoshop-Wallpaper-Raining-Cloud-800x600.png").convert()
+
 tamanho_plano_de_fundo = plano_de_fundo.get_size()
 posicao_plano_de_fundo = plano_de_fundo.get_rect()
 screen = pygame.display.set_mode(tamanho_plano_de_fundo)
@@ -75,10 +91,7 @@ y = 0
 
 x1 = a
 y1 = 0
-branco = (225,225,225)
-preto = (0,0,0)
-pygame.font.init()
-font = pygame.font.get_default_font()
+
 # Cria bola e adiciona em um grupo de Sprites.
 aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
@@ -88,11 +101,17 @@ bebe = Bebe("meupirudebone.png")
 bebe_group = pygame.sprite.Group()
 bebe_group.add(bebe)
 
+missel = Missel("missel.png")
+missel_group = pygame.sprite.Group()
+missel_group.add(missel)
+
+
 # ===============   LOOPING PRINCIPAL   ===============
 rodando = True
 while rodando:
 
-    pontos = 0
+    # === PRIMEIRA PARTE: LIDAR COM EVENTOS ===
+
     # Para cada evento não-processado na lista de eventos:
     for event in pygame.event.get():
         # Verifica se o evento atual é QUIT (janela fechou).
@@ -112,7 +131,6 @@ while rodando:
     if x1 < -800:
         x1 = a
 
-
     aviao.move()
 
     if aviao.rect.x < -95:
@@ -122,20 +140,20 @@ while rodando:
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
-    if aviao.rect.y > 490 - placar:
-        aviao.rect.y = 490 - placar
+    if aviao.rect.y > 490:
+        aviao.rect.y = 490
         
     keyinput = pg.key.get_pressed()
     
     if keyinput[pg.K_LEFT]:
-        aviao.rect.x -= 5
+        aviao.rect.x -= 1
     elif keyinput[pg.K_RIGHT]:
-        aviao.rect.x += 5
+        aviao.rect.x += 1
     elif keyinput[pg.K_UP]:
-        aviao.rect.y -= 5
+        aviao.rect.y -= 1
     elif keyinput[pg.K_DOWN]:
-
         aviao.rect.y += 1
+<<<<<<< HEAD
     
         
         
@@ -144,16 +162,16 @@ while rodando:
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
     texto("Pontuação:"+str(pontos),branco,40,50,600-placar)
     
+=======
+
+>>>>>>> f5d024c623f3e09cd71d9c6fdd6058d3a832346f
     aviao_group.draw(tela)
     bebe_group.draw(tela)
     bebe_group.update()
+    missel_group.draw(tela)
+    missel_group.update()
+    
     pygame.display.flip()
-    aviao.rect.y += 1
-
-    aviao_group.draw(tela)
-    pygame.display.flip()
-
     pygame.display.update()
 
-    
 pygame.display.quit()
