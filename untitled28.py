@@ -40,6 +40,7 @@ class Bebe(pygame.sprite.Sprite):
         self.y = 0
         self.x = random.randint(0,800)
         
+        
         picture = pygame.transform.scale(pygame.image.load(imagem_bebe), (80, 60))
         self.image = picture
         self.rect = self.image.get_rect()
@@ -58,6 +59,7 @@ class Bebe(pygame.sprite.Sprite):
 
 pygame.init()
 placar = 40
+pontos = 0
 #block = Block()
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('p')
@@ -134,15 +136,14 @@ while rodando:
     elif keyinput[pg.K_DOWN]:
 
         aviao.rect.y += 1
+    
+        
+        
+        
         
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
-    texto("Pontuação:",branco,40,50,600-placar)
+    texto("Pontuação:"+str(pontos),branco,40,50,600-placar)
     
-    
-    
-    
-
-
     aviao_group.draw(tela)
     bebe_group.draw(tela)
     bebe_group.update()
