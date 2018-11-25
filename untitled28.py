@@ -70,13 +70,13 @@ class Missel(pygame.sprite.Sprite):
            
 
 pygame.init()
-<<<<<<< HEAD
+
 placar = 40
 pontos = 0
 #block = Block()
-=======
 
->>>>>>> f5d024c623f3e09cd71d9c6fdd6058d3a832346f
+
+
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Air Rescue')
 
@@ -153,7 +153,7 @@ while rodando:
         aviao.rect.y -= 1
     elif keyinput[pg.K_DOWN]:
         aviao.rect.y += 1
-<<<<<<< HEAD
+
     
         
         
@@ -162,9 +162,8 @@ while rodando:
     pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
     texto("Pontuação:"+str(pontos),branco,40,50,600-placar)
     
-=======
 
->>>>>>> f5d024c623f3e09cd71d9c6fdd6058d3a832346f
+
     aviao_group.draw(tela)
     bebe_group.draw(tela)
     bebe_group.update()
