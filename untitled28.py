@@ -71,7 +71,8 @@ pygame.init()
 preto = (0,0,0)
 branco = (255,255,255)
 placar = 40
-
+aviao = Aviao()
+bebe = Bebe()
 #block = Block()
 pygame.font.init()
 font = pygame.font.SysFont(None,25, bold=True)
@@ -154,7 +155,9 @@ while rodando:
     #if Aviao == Bebe and Aviao == Bebe:
      #   pontos+=1
         
-        
+    blocks_hit_list = pygame.sprite.spritecollide(aviao, bebe, True)
+    for block in blocks_hit_list:
+        pontos +=1
         
     keyinput = pg.key.get_pressed()
     
