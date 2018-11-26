@@ -71,10 +71,13 @@ class Missel(pygame.sprite.Sprite):
 
 pygame.init()
 
+preto = (0,0,0)
+branco = (255,255,255)
 placar = 40
-pontos = 0
-#block = Block()
 
+#block = Block()
+pygame.font.init()
+font = pygame.font.SysFont(None,25, bold=True)
 
 
 tela = pygame.display.set_mode((800, 600), 0, 32)
@@ -91,6 +94,10 @@ y = 0
 
 x1 = a
 y1 = 0
+
+def texto(msg,cor):
+    texto1 = font.render(msg, True, cor)
+    tela.blit(texto1,[20, 600-placar])
 
 # Cria bola e adiciona em um grupo de Sprites.
 aviao = Aviao("PelicanoCria.png", 250, 150, randrange(1), randrange(1))
@@ -109,7 +116,7 @@ missel_group.add(missel)
 # ===============   LOOPING PRINCIPAL   ===============
 rodando = True
 while rodando:
-
+    pontos = 0
     # === PRIMEIRA PARTE: LIDAR COM EVENTOS ===
 
     # Para cada evento não-processado na lista de eventos:
@@ -140,8 +147,12 @@ while rodando:
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
-    if aviao.rect.y > 490:
-        aviao.rect.y = 490
+    if aviao.rect.y > 490-placar:
+        aviao.rect.y = 490-placar
+        
+    if Aviao == Bebe:
+        pontos +=1
+        
         
     keyinput = pg.key.get_pressed()
     
@@ -159,8 +170,8 @@ while rodando:
         
         
         
-    pygame.draw.rect(fundo,preto,[0,600-placar,800,placar])
-    texto("Pontuação:"+str(pontos),branco,40,50,600-placar)
+    pygame.draw.rect(plano_de_fundo,preto,[0,600-placar,800,placar])
+    texto("Pontuação:"+str(pontos),branco)
     
 
 
