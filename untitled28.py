@@ -34,14 +34,10 @@ class Bebe(pygame.sprite.Sprite):
         self.y = 0
         self.x = random.randint(0,800)
         
-        
         picture = pygame.transform.scale(pygame.image.load(imagem_bebe), (80, 60))
         self.image = picture
         self.rect = self.image.get_rect()
     
-    '''def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect)'''
-   
     def update(self):
        self.rect.y += 1
        if self.rect.y == 600:
@@ -63,7 +59,8 @@ class Missel(pygame.sprite.Sprite):
     
    
     def update(self):
-       self.rect.y += 2
+       self.rect.y +=1
+    
        if self.rect.y == 600:
            self.rect.y = 0
            self.rect.x = random.randint(0,800)
@@ -116,6 +113,10 @@ missel_group.add(missel)
 # ===============   LOOPING PRINCIPAL   ===============
 rodando = True
 while rodando:
+    #pos_x = random.randint(0,(800-600)/10,)*10
+#    pos_y = random.randint(0,(600-800)/10,)*10
+#    bebe_x = random.randint(0,(800-600)/10,)*10
+#    bebe_y = random.randint(0,(600-800)/10,)*10
     pontos = 0
     # === PRIMEIRA PARTE: LIDAR COM EVENTOS ===
 
@@ -150,8 +151,9 @@ while rodando:
     if aviao.rect.y > 490-placar:
         aviao.rect.y = 490-placar
         
-    if Aviao == Bebe:
-        pontos +=1
+    #if Aviao == Bebe and Aviao == Bebe:
+     #   pontos+=1
+        
         
         
     keyinput = pg.key.get_pressed()
