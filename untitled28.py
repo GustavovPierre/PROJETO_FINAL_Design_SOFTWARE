@@ -58,7 +58,7 @@ class Missel(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
     
    
-    def update(self):
+    def update1(self):
        self.rect.y +=1
     
        if self.rect.y == 600:
@@ -71,8 +71,7 @@ pygame.init()
 preto = (0,0,0)
 branco = (255,255,255)
 placar = 40
-aviao = Aviao()
-bebe = Bebe()
+
 #block = Block()
 pygame.font.init()
 font = pygame.font.SysFont(None,25, bold=True)
@@ -109,7 +108,7 @@ bebe_group.add(bebe)
 missel = Missel("missel.png")
 missel_group = pygame.sprite.Group()
 missel_group.add(missel)
-
+pontos = 0
 
 # ===============   LOOPING PRINCIPAL   ===============
 rodando = True
@@ -118,7 +117,7 @@ while rodando:
 #    pos_y = random.randint(0,(600-800)/10,)*10
 #    bebe_x = random.randint(0,(800-600)/10,)*10
 #    bebe_y = random.randint(0,(600-800)/10,)*10
-    pontos = 0
+    
     # === PRIMEIRA PARTE: LIDAR COM EVENTOS ===
 
     # Para cada evento não-processado na lista de eventos:
@@ -155,9 +154,17 @@ while rodando:
     #if Aviao == Bebe and Aviao == Bebe:
      #   pontos+=1
         
-    blocks_hit_list = pygame.sprite.spritecollide(aviao, bebe, True)
+    blocks_hit_list = pygame.sprite.spritecollide(aviao,bebe_group, True)
     for block in blocks_hit_list:
+        
         pontos +=1
+   
+    blocks_hit_list = pygame.sprite.spritecollide(aviao,missel_group, True)
+    for block in blocks_hit_list:
+        
+        pontos -=3
+        
+   
         
     keyinput = pg.key.get_pressed()
     
