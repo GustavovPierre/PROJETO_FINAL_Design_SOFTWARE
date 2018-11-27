@@ -34,10 +34,12 @@ class Bebe(pygame.sprite.Sprite):
         self.y = 0
         self.x = random.randint(0,800)
         
+        
         picture = pygame.transform.scale(pygame.image.load(imagem_bebe), (80, 60))
         self.image = picture
         self.rect = self.image.get_rect()
-    
+        self.rect.x = self.x
+        self.rect.y = self.y
     def update(self):
        self.rect.y += 1
        if self.rect.y == 600:
@@ -56,9 +58,11 @@ class Missel(pygame.sprite.Sprite):
         picture2 = pygame.transform.scale(pygame.image.load(imagem_missel), (200, 150))
         self.image = picture2
         self.rect = self.image.get_rect()
+        self.rect.x = self.x
+        self.rect.y = self.y
     
    
-    def update1(self):
+    def update(self):
        self.rect.y +=1
     
        if self.rect.y == 600:
@@ -151,16 +155,22 @@ while rodando:
     if aviao.rect.y > 490-placar:
         aviao.rect.y = 490-placar
         
-    #if Aviao == Bebe and Aviao == Bebe:
-     #   pontos+=1
+    
+        
+        
         
     blocks_hit_list = pygame.sprite.spritecollide(aviao,bebe_group, True)
     for block in blocks_hit_list:
+        bebe = Bebe("meupirudebone.png")
+        bebe_group.add(bebe)
         
         pontos +=1
+        
    
     blocks_hit_list = pygame.sprite.spritecollide(aviao,missel_group, True)
     for block in blocks_hit_list:
+        missel = Missel("missel.png")
+        missel_group.add(missel)
         
         pontos -=3
         
