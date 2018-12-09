@@ -127,14 +127,14 @@ pontos_missel = 0
         
 rodando = True
 while rodando:
-    intro = True
-    while intro:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-        
-        texto3("Bem vindo",preto)
+#    intro = True
+#    while intro:
+#        for event in pygame.event.get():
+#            if event.type == pygame.QUIT:
+#                pygame.quit()
+#                quit()
+#        
+#        texto3("Bem vindo",preto)
         
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
