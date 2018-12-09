@@ -146,10 +146,10 @@ while rodando:
 
     aviao.move()
 
-    if aviao.rect.x < -95:
-        aviao.rect.x = 800
-    if aviao.rect.x > 805:
-        aviao.rect.x = -90
+    if aviao.rect.x < -55:
+        aviao.rect.x = 745
+    if aviao.rect.x > 760:
+        aviao.rect.x = -35
 
     if aviao.rect.y < 0:
         aviao.rect.y = 0
