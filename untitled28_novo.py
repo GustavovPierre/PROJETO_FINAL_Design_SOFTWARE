@@ -103,7 +103,9 @@ def texto(msg,cor):
 def texto2(msg,cor):
     texto2 = font.render(msg, True, cor)
     tela.blit(texto2, [730, 570])
-
+def texto3(msg,cor):
+    texto3 = font.render(msg, True, cor)
+    tela.blit(texto3, [730, 570])
 
 aviao = Aviao("PelicanoCria.png", 350, 350, randrange(1), randrange(1))
 aviao_group = pygame.sprite.Group()
@@ -125,7 +127,15 @@ pontos_missel = 0
         
 rodando = True
 while rodando:
-    
+    intro = True
+    while intro:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        
+        texto3("Bem vindo",preto)
+        
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             rodando = False
